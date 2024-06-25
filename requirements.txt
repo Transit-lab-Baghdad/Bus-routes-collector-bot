@@ -1,0 +1,9 @@
+boto3==1.34.122
+gpxpy==1.6.2
+pandas==2.2.2
+psycopg2_binary==2.9.9
+python-dotenv==1.0.1
+python-telegram-bot==21.3
+Shapely==2.0.4
+simplification==0.7.10
+SQLAlchemy==2.0.30
