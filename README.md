@@ -1,11 +1,14 @@
 # 📡 Transit Lab Bot | جامع البيانات
 
 Welcome to the **Transit Lab Bot** repository! This bot is designed to help users collect and save GPS tracking data in the form of `.gpx` files and transform this data into a tabular format for storage in a PostgreSQL database. Additionally, it gathers valuable information like fares, vehicle conditions, and bus gathering areas, including official and unofficial stops or terminals.
+We found the need for this tool to help us gather information on official and unofficial public transportation means.
+This tool is mainly used by our volunteers & contributors.
 
 ## 🚀 Features
 
 - **Collect GPS Data**: Save `.gpx` files recorded by users.
 - **Transform Data**: Convert `.gpx` data into a tabular format suitable for database storage.
+- **Simplify the gpx file** by reducing the number of points while maintaining the overall polyline shape.
 - **Save to PostgreSQL**: Store the processed data in a PostgreSQL database.
 - **Gather Additional Information**: Collect details about fares, vehicle conditions, and bus gathering areas.
 
@@ -31,7 +34,72 @@ Welcome to the **Transit Lab Bot** repository! This bot is designed to help user
     ```
 4. **Set Up PostgreSQL**:
     - Ensure you have PostgreSQL installed and running.
-    - Create a new database and user for the bot.
+    - Create a new database, User, Tables using the following SQL script:
+```sql
+CREATE DATABASE bot_db;
+CREATE USER bot_user WITH ENCRYPTED PASSWORD 'password';
+GRANT ALL PRIVILEGES ON DATABASE bot_db TO bot_user;
+CREATE TABLE bus_routes (
+    id SERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    telegram_username VARCHAR(255),
+    session_id VARCHAR(255),
+    vehicle_type VARCHAR(50),
+    point_id INT,
+    date DATE,
+    time TIME,
+    source VARCHAR(255),
+    destination VARCHAR(255),
+    lat DOUBLE PRECISION,
+    lon DOUBLE PRECISION,
+    point_type VARCHAR(50),
+    cancel BOOLEAN DEFAULT FALSE,
+    geom_point GEOMETRY(Point, 4326)
+);
+
+CREATE TABLE bus_stops (
+    id SERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    telegram_username VARCHAR(255),
+    session_id VARCHAR(255),
+    vehicle_type VARCHAR(50),
+    date DATE,
+    time TIME,
+    destination VARCHAR(255),
+    lat DOUBLE PRECISION,
+    lon DOUBLE PRECISION,
+    cancel BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE fares (
+    id SERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    telegram_username VARCHAR(255),
+    session_id VARCHAR(255),
+    date DATE,
+    time TIME,
+    source VARCHAR(255),
+    destination VARCHAR(255),
+    fare INT,
+    vehicle_condition VARCHAR(50),
+    vehicle_type VARCHAR(50)
+);
+
+CREATE TABLE simplified_bus_routes (
+    id SERIAL PRIMARY KEY,
+    session_id VARCHAR(255),
+    user_id BIGINT NOT NULL,
+    telegram_username VARCHAR(255),
+    vehicle_type VARCHAR(50),
+    date DATE,
+    time TIME,
+    source VARCHAR(255),
+    destination VARCHAR(255),
+    cancel BOOLEAN DEFAULT FALSE,
+    geom_line GEOMETRY(LineString, 4326)
+);
+```
+
 
 5. **Configure Environment Variables**:
     - Create a `.env` file in the project directory.
@@ -49,11 +117,15 @@ Welcome to the **Transit Lab Bot** repository! This bot is designed to help user
 
 1. **Run the Bot**:
     ```bash
-    python TransitlabBot.py
+    python TransitlabBotEN.py
     ```
 2. **Interact with the Bot on Telegram**:
     - Send your `.gpx` file to the bot.
     - Provide additional information as prompted (e.g., fares, vehicle conditions, etc.).
+  
+## Bot Workflow
+
+![Workflow](https://github.com/Transit-lab-Baghdad/Bus-routes-collector-bot/assets/116530009/301dabda-5dc5-4ed2-8cbd-e5e783847979)
 
 
 ## 📄 License
