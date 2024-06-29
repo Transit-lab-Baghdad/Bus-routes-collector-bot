@@ -1,8 +1,10 @@
-# 📡 Transit Lab Bot | جامع البيانات
+# 📡 Transit Lab Bot | بوت جامع البيانات 
 
-Welcome to the **Transit Lab Bot** repository! This bot is designed to help users collect and save GPS tracking data in the form of `.gpx` files and transform this data into a tabular format for storage in a PostgreSQL database. Additionally, it gathers valuable information like fares, vehicle conditions, and bus gathering areas, including official and unofficial stops or terminals.
+Welcome to the **Transit Lab Bot** repository! This bot is designed to help users collect and save GPS tracking data in the form of `.gpx` files and transform this data into a tabular format for storage in a PostgreSQL database. Additionally, it gathers valuable information like fares, vehicle conditions, and bus gathering areas, including official and unofficial stops or terminals.  
 We found the need for this tool to help us gather information on official and unofficial public transportation means.
-This tool is mainly used by our volunteers & contributors.
+This tool is mainly used by our volunteers & contributors.  
+
+The bot is available in Both **English & Arabic** Languages.
 
 ## 🚀 Features
 
@@ -125,7 +127,8 @@ CREATE TABLE simplified_bus_routes (
   
 ## Bot Workflow
 
-![Workflow](https://github.com/Transit-lab-Baghdad/Bus-routes-collector-bot/assets/116530009/301dabda-5dc5-4ed2-8cbd-e5e783847979)
+<img src="https://github.com/Transit-lab-Baghdad/Bus-routes-collector-bot/assets/116530009/301dabda-5dc5-4ed2-8cbd-e5e783847979" alt="Workflow" width="500" height="1000">
+
 
 
 ## 📄 License
