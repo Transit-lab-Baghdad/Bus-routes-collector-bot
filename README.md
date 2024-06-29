@@ -35,7 +35,7 @@ Welcome to the **Transit Lab Bot** repository! This bot is designed to help user
 
 5. **Configure Environment Variables**:
     - Create a `.env` file in the project directory.
-    - Add your Telegram Bot API token and PostgreSQL connection details to the `.env` file:
+    - Add your Telegram Bot API token (provided by Bot Father from Telegram) and PostgreSQL connection details to the `.env` file:
     ```
     DB_HOST=your_database_host_link
     DB_PORT=your_db_port
@@ -49,7 +49,7 @@ Welcome to the **Transit Lab Bot** repository! This bot is designed to help user
 
 1. **Run the Bot**:
     ```bash
-    python bot.py
+    python TransitlabBot.py
     ```
 2. **Interact with the Bot on Telegram**:
     - Send your `.gpx` file to the bot.
